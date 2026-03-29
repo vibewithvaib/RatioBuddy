@@ -1,0 +1,48 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and progress",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "mastery": { "type": "object" },
+        "lastActive": { "type": "string", "format": "date-time" },
+        "xp": { "type": "number" },
+        "level": { "type": "number" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Interaction": {
+      "title": "Interaction",
+      "description": "User interaction log",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "type": { "type": "string" },
+        "kcId": { "type": "string" },
+        "topicId": { "type": "string" },
+        "questionId": { "type": "string" },
+        "correct": { "type": "boolean" },
+        "hintsUsed": { "type": "number" },
+        "attempts": { "type": "number" },
+        "misconception": { "type": "string" }
+      },
+      "required": ["userId", "timestamp", "type"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Individual user document"
+    },
+    "/interactions/{interactionId}": {
+      "schema": "Interaction",
+      "description": "Interaction log entry"
+    }
+  }
+}
